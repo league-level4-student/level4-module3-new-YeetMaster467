@@ -21,10 +21,30 @@ public class SpiesOnATrain {
      * testimony. Remember to use String methods to break up the passengers'
      * statements.
      */
+	
+	Node<TrainCar> head;
+	HashMap<String, String> info = new HashMap<String, String>();
+	
     String findIntel(LinkedList<TrainCar> train, String[] clues) {
-
+    	head = train.getHead();
+    	while (head != null) {
+    		info.put(head.getValue().questionPassenger().split(" ")[13], getClues(head.getValue().questionPassenger()));
+    		System.out.println(info.toString());
+    		head = head.getNext();
+    	}
         return "";
 
+    }
+    
+    String getClues(String v) {
+    	String[] vArr = v.split(" ");
+    	String clues = "";
+    	for (int i = 0; i < vArr.length; i++) {
+    		if (i >= 14) {
+    			clues += vArr[i] + " ";
+    		}
+    	}
+    	return clues;
     }
 
 }
