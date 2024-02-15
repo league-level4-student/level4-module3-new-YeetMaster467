@@ -33,17 +33,23 @@ public class RainbowZombieCongaLine {
 
     // Make the passed in zombie the first Zombie in the conga line!
     public void engine(Zombie dancer) {
-
+    	congaLine.setHead(new Node<Zombie>(dancer));
     }
 
     // Make the passed in zombie the last Zombie in the conga line!
     public void caboose(Zombie dancer) {
-
+    	congaLine.setTail(new Node<Zombie>(dancer));
     }
 
     // Place the zombie at the designated position in the conga line!
     public void jumpInTheLine(Zombie dancer, int position) {
-
+    	for (int i = 0; i < congaLine.size(); i++) {
+    		if (i == position) {
+    			congaLine.setHead(congaLine.getHead().getNext());
+    			return;
+    		}
+    		congaLine.setHead(congaLine.getHead().getNext());
+    	}
     }
 
     /*
@@ -51,7 +57,13 @@ public class RainbowZombieCongaLine {
      * the conga line!
      */
     public void everyoneOut(Zombie dancer) {
-
+    	Node<Zombie> head = new Node<Zombie>(dancer);
+    	for (int i = 0; i < congaLine.size(); i++) {
+    		if (head.getValue().getZombieHatColor() == head.getNext().getValue().getZombieHatColor()) {
+    			congaLine.remove(i + 1);
+    		}
+    		head = head.getNext();
+    	}
     }
 
     /*
@@ -59,7 +71,14 @@ public class RainbowZombieCongaLine {
      * from the conga line!
      */
     public void youAreDone(Zombie dancer) {
-
+    	Node<Zombie> head = new Node<Zombie>(dancer);
+    	for (int i = 0; i < congaLine.size(); i++) {
+    		if (head.getValue().getZombieHatColor() == head.getNext().getValue().getZombieHatColor()) {
+    			congaLine.remove(i + 1);
+    			return;
+    		}
+    		head = head.getNext();
+    	}
     }
 
     /*
@@ -67,7 +86,9 @@ public class RainbowZombieCongaLine {
      * add one to the front, one to the end and one in the middle.
      */
     public void brains(Zombie dancer) {
-
+    	congaLine.setHead(new Node<Zombie>(dancer));
+    	congaLine.setTail(new Node<Zombie>(new Zombie(dancer.getZombieHatColor())));
+    	jumpInTheLine(new Zombie(dancer.getZombieHatColor()), Math.round(congaLine.size() / 2));
     }
 
     /*
