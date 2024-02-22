@@ -1,11 +1,13 @@
 package _03_Intro_to_Binary_Trees;
 
+import java.util.Random;
+
 public class BinaryTreeDemo {
 
     /*
      * A Binary Tree is a data structure that makes use of nodes and references
      * like a LinkedList, but instead of the nodes pointing to a previous node
-     * or next node in an unorderd list they each points to two child nodes that
+     * or next node in an unordered list they each points to two child nodes that
      * are below them in the hierarchy.
      * 
      * Some important properties of BinaryTree are:
@@ -33,7 +35,14 @@ public class BinaryTreeDemo {
      */
 
     public static void main(String[] args) {
-
+    	BinaryTree<Integer> tree = new BinaryTree<Integer>();
+    	for (int i = 0; i < 20; i++) {
+    		tree.insert(i);
+    	}
+    	//System.out.println(tree.search(42));
+    	tree.printVertical();
+    	tree.delete(13);
+    	tree.printHorizontal();
     }
 
 }

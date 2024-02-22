@@ -43,12 +43,14 @@ public class RainbowZombieCongaLine {
 
     // Place the zombie at the designated position in the conga line!
     public void jumpInTheLine(Zombie dancer, int position) {
-    	for (int i = 0; i < congaLine.size(); i++) {
+    	int i = 0;
+    	Node<Zombie> head = new Node<Zombie> (dancer);
+    	while (head != null) {
     		if (i == position) {
-    			congaLine.setHead(congaLine.getHead().getNext());
     			return;
     		}
-    		congaLine.setHead(congaLine.getHead().getNext());
+    		i ++;
+    		head = head.getNext();    	
     	}
     }
 
@@ -58,10 +60,12 @@ public class RainbowZombieCongaLine {
      */
     public void everyoneOut(Zombie dancer) {
     	Node<Zombie> head = new Node<Zombie>(dancer);
-    	for (int i = 0; i < congaLine.size(); i++) {
-    		if (head.getValue().getZombieHatColor() == head.getNext().getValue().getZombieHatColor()) {
+    	int i = 0;
+    	while (head != null) {
+    		if (dancer.getZombieHatColor() == head.getValue().getZombieHatColor()) {
     			congaLine.remove(i + 1);
     		}
+    		i++;
     		head = head.getNext();
     	}
     }
@@ -72,11 +76,13 @@ public class RainbowZombieCongaLine {
      */
     public void youAreDone(Zombie dancer) {
     	Node<Zombie> head = new Node<Zombie>(dancer);
-    	for (int i = 0; i < congaLine.size(); i++) {
-    		if (head.getValue().getZombieHatColor() == head.getNext().getValue().getZombieHatColor()) {
+    	int i = 0;
+    	while (head != null) {
+    		if (dancer.getZombieHatColor() == head.getValue().getZombieHatColor()) {
     			congaLine.remove(i + 1);
     			return;
     		}
+    		i ++;
     		head = head.getNext();
     	}
     }
@@ -96,7 +102,10 @@ public class RainbowZombieCongaLine {
      * color to the end of the line.
      */
     public void rainbowBrains(Zombie dancer) {
-
+    	congaLine.setHead( new Node<Zombie>(dancer) );
+    	for (int i = 0; i < ZombieHatColor.values().length; i++) {
+    		congaLine.add(new Zombie(ZombieHatColor.values()[i]));
+    	}
     }
 
     public LinkedList<Zombie> getCongaLine() {
