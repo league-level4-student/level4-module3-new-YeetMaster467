@@ -1,6 +1,7 @@
 package _04_Morse_Code;
 
 import _03_Intro_to_Binary_Trees.BinaryTree;
+import _03_Intro_to_Binary_Trees.Node;
 
 public class MorseDecoder {
 
@@ -47,7 +48,7 @@ public class MorseDecoder {
         mcTree.insert(new MorseCode("z", "--.."));
         mcTree.insert(new MorseCode("q", "--.-"));
 
-        mcTree.printVertical();
+        mcTree.printVertical(mcTree.getRoot());
 
     }
 
@@ -57,14 +58,41 @@ public class MorseDecoder {
      * 
      * -.-- --- ..- .- .-. . .- -- .- --.. .. -. --.
      * 
+     */
+    
+
+    /*
      * 2.) Then use the binary tree and the scanner class to create a morse code
      * translator. The user should be able to type multiple letters in morse
      * code on a single line and have it repeated back to them, decoded into the
      * english alphabet.
      * 
      */
+    
     void decode() {
         String morseCode = "-.-- --- ..- .- .-. . .- -- .- --.. .. -. --.";
+        String[] mcArr = morseCode.split(" ");
+        String[] solvedArr = new String[mcArr.length];
+        
+        for (int i = 0; i < mcArr.length; i++) {
+        	solvedArr[i] = recursiveDecode(new Node<MorseCode> (new MorseCode(mcArr[i]) ), i);
+        }
+    }
+    
+    String recursiveDecode(Node<MorseCode> m, int i) {
+    	if (m == null) {
+    		return null;
+    	}
+    	
+    	if (m.getLeft().getValue().getCoded().equals(m.getValue().getCoded())) {
+    		return m.getLeft().getValue().getDecoded();
+    	} else if (m.getRight().getValue().getCoded().equals(m.getValue().getCoded())) {
+    		return m.getRight().getValue().getDecoded();
+    	} else {
+    		//recurisveDecode(m)
+    	}
+    	
+    	return "";
     }
 
 }

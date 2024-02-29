@@ -33,15 +33,33 @@ public class BinaryTree<T extends Comparable<T>> {
         root = recursiveDelete(root, value);
     }
 
-    public void printHorizontal() {
-        recursivePrintHorizontal(root, 0);
+    public void printHorizontal(Node<T> n) {
+        //recursivePrintHorizontal(root, 0);
+    	
+    	if (n == null) {
+    		return;
+    	}
+    	
+    	System.out.println(n.getValue());
+    	
+    	printHorizontal ( n.getLeft() );
+    	printHorizontal ( n.getRight() );
     }
 
-    public void printVertical() {
+    public void printVertical(Node<T> n) {
 
-        int maxLevel = maxLevel(root);
+        //int maxLevel = maxLevel(root);
 
-        recursivePrintVertical(Collections.singletonList(root), 1, maxLevel);
+        //recursivePrintVertical(Collections.singletonList(root), 1, maxLevel);
+    	
+    	if (n == null) {
+    		return;
+    	}
+    	
+    	printVertical ( n.getLeft() ) ;
+    	System.out.println(n.getValue());
+    	printVertical ( n.getRight() ) ;
+    	
     }
 
     public Node<T> getRoot() {

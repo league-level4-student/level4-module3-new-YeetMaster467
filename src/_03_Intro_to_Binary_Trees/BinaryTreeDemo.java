@@ -36,13 +36,14 @@ public class BinaryTreeDemo {
 
     public static void main(String[] args) {
     	BinaryTree<Integer> tree = new BinaryTree<Integer>();
+    	Random r = new Random();
     	for (int i = 0; i < 20; i++) {
-    		tree.insert(i);
+    		tree.insert(r.nextInt(20));
     	}
-    	//System.out.println(tree.search(42));
-    	tree.printVertical();
+    	System.out.println(tree.search(7));
+    	tree.printVertical(tree.getRoot());
     	tree.delete(13);
-    	tree.printHorizontal();
+    	tree.printHorizontal(tree.getRoot());
     }
 
 }
