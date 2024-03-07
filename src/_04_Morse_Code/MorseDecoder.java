@@ -11,7 +11,8 @@ public class MorseDecoder {
 
         MorseDecoder md = new MorseDecoder();
         md.initialize();
-        md.decode();
+        md.decode(" -.-- --- ..- .- .-. . .- -- .- --.. .. -. --.");
+        md.decode(".. .-.. .. -.- . .--. .. --.. --.. .-");
 
     }
 
@@ -69,30 +70,20 @@ public class MorseDecoder {
      * 
      */
     
-    void decode() {
-        String morseCode = "-.-- --- ..- .- .-. . .- -- .- --.. .. -. --.";
+    void decode(String morseInput) {
+        String morseCode = morseInput;
         String[] mcArr = morseCode.split(" ");
-        String[] solvedArr = new String[mcArr.length];
+        String solvedArr = "";
+        
+        
         
         for (int i = 0; i < mcArr.length; i++) {
-        	solvedArr[i] = recursiveDecode(new Node<MorseCode> (new MorseCode(mcArr[i]) ), i);
+        	solvedArr += mcTree.search(new MorseCode(mcArr[i])).getValue().getDecoded();
         }
+        
+        System.out.println(solvedArr);
     }
     
-    String recursiveDecode(Node<MorseCode> m, int i) {
-    	if (m == null) {
-    		return null;
-    	}
-    	
-    	if (m.getLeft().getValue().getCoded().equals(m.getValue().getCoded())) {
-    		return m.getLeft().getValue().getDecoded();
-    	} else if (m.getRight().getValue().getCoded().equals(m.getValue().getCoded())) {
-    		return m.getRight().getValue().getDecoded();
-    	} else {
-    		//recurisveDecode(m)
-    	}
-    	
-    	return "";
-    }
+   
 
 }

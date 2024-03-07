@@ -30,12 +30,12 @@ public class AVLTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     }
 
-    @Override
+  
     public void printHorizontal() {
         recursivePrintHorizontal(root, 0);
     }
     
-    @Override
+   
     public void printVertical() {
         int maxLevel = maxLevel(root);
 

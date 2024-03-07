@@ -27,11 +27,30 @@ public class AVLTreeDemo {
      * binary tree.
      * 
      * 4.) Try removing elements from both and see how they change using one of
-     * the print methods.
+     * the print methods. 
      */
 
     public static void main(String[] args) {
-
+    	BinaryTree<Integer> bTree = new BinaryTree<Integer>();
+    	AVLTree<Integer> avlTree = new AVLTree<Integer>();
+    	
+    	for (int i = 0; i <= 20; i++) {
+    		bTree.insert(i);
+    		avlTree.insert(i);
+    	}
+    	
+    	bTree.printHorizontal(bTree.getRoot());
+    	System.out.println("\n--\n");
+    	avlTree.printHorizontal(avlTree.getRoot());
+    	
+    	System.out.println("\n**\n");
+    	
+    	bTree.delete(10);
+    	avlTree.delete(10);
+    	
+    	bTree.printHorizontal(bTree.getRoot());
+    	System.out.println("\n--\n");
+    	avlTree.printHorizontal(avlTree.getRoot());
     }
 
 }
