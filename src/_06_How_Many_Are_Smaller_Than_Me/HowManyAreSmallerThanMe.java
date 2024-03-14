@@ -20,18 +20,20 @@ public class HowManyAreSmallerThanMe {
     	int howMany = 0;
     	System.out.println(me);
     	ArrayList<AVLNode<Integer>> list = new ArrayList<AVLNode<Integer>>();
-    	AVLNode<Integer> root = avlTree.getRoot();
-    	list.add(root);
+    	AVLNode<Integer> current = avlTree.getRoot();
     	
-    	while (!list.isEmpty()) {
-    		AVLNode<Integer> n = list.remove(0);
-    		list.add(n.getLeft());
-    		if (list.get(list.size()).getValue() < me) {
-    			howMany ++;
+    	
+    	while (!list.isEmpty() || current != null) {
+    		while (current != null) {
+    			list.add(current);
+    			current = current.getLeft();
     		}
-    		list.add(n.getRight());
-    		if (list.get(list.size()).getValue() < me) {
-    			howMany++;
+    		AVLNode<Integer> top = list.remove(list.size() - 1);
+    		if (top.getValue() == me) {
+    			break;
+    		} else {
+    			current = top.getRight();
+    			howMany ++;
     		}
     	}
     	
